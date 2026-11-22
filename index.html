@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Evelyn ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================
+   DASAR WEBSITE
+========================= */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fdfbfb;
+  background-image:
+    radial-gradient(at 15% 15%, #ffdde1 0px, transparent 50%),
+    radial-gradient(at 85% 85%, #ee9ca7 0px, transparent 50%),
+    radial-gradient(at 50% 50%, #e0c3fc 0px, transparent 65%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  padding: 45px 18px;
+  position: relative;
+}
+
+/* =========================
+   SLIDE PEMBUKA
+========================= */
+
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: rgba(255, 245, 247, 0.96);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  transition: opacity 0.5s ease;
+}
+
+.welcome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  color: #3d2c3e;
+  margin-bottom: 10px;
+}
+
+.welcome-sub {
+  font-size: 14px;
+  color: #6d5965;
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+
+/* =========================
+   SISTEM SLIDE
+========================= */
+
+.slide {
+  display: none;
+  opacity: 0;
+  width: 100%;
+  max-width: 460px;
+}
+
+.slide.active {
+  display: block;
+  animation: fadeIn 0.7s ease forwards;
+}
+
+/* =========================
+   KARTU UTAMA
+========================= */
+
+.card {
+  position: relative;
+  z-index: 10;
+  max-width: 460px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  padding: 40px 26px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(61, 44, 62, 0.08);
+}
+
+/* =========================
+   HIASAN BUNGA SUDUT
+========================= */
+
+.floral-corner {
+  position: absolute;
+  font-size: 34px;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(181, 101, 118, 0.2));
+  animation: sway 4s ease-in-out infinite alternate;
+  z-index: 15;
+}
+
+.fc-top-left {
+  top: -18px;
+  left: -14px;
+}
+
+.fc-top-right {
+  top: -18px;
+  right: -14px;
+  animation-delay: 1s;
+}
+
+.fc-bottom-left {
+  bottom: -18px;
+  left: -14px;
+  animation-delay: 1.5s;
+}
+
+.fc-bottom-right {
+  bottom: -18px;
+  right: -14px;
+  animation-delay: 0.5s;
+}
+
+@keyframes sway {
+  0% {
+    transform: rotate(-6deg) scale(1);
+  }
+
+  100% {
+    transform: rotate(8deg) scale(1.06);
+  }
+}
+
+/* =========================
+   JUDUL DAN PESAN
+========================= */
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8e6c88;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  color: #3d2c3e;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+h1 span {
+  font-style: italic;
+  color: #b56576;
+}
+
+.message-section {
+  position: relative;
+  margin: 18px 0;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #4f3e45;
+  font-weight: 400;
+  white-space: pre-line;
+}
+
+/* =========================
+   PEMUTAR PESAN AUDIO (SLIDE 5)
+========================= */
+
+.voice-note-box {
+  margin: 18px 0;
+  padding: 20px 16px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(181, 101, 118, 0.25);
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(181, 101, 118, 0.1);
+  text-align: left;
+}
+
+.voice-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.voice-play-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #b56576;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(181, 101, 118, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.voice-play-btn:hover {
+  background: #3d2c3e;
+  transform: scale(1.05);
+}
+
+.voice-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.voice-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3d2c3e;
+}
+
+.voice-sub {
+  font-size: 11px;
+  color: #8e5263;
+  margin-top: 2px;
+}
+
+.voice-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.voice-slider {
+  flex: 1;
+  accent-color: #b56576;
+  cursor: pointer;
+  height: 5px;
+}
+
+.voice-time {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6d5965;
+  min-width: 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================
+   FOTO POLAROID
+========================= */
+
+.inline-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 8px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.mini-polaroid {
+  position: relative;
+  background: #fff;
+  padding: 7px 7px 20px;
+  border-radius: 6px;
+  box-shadow: 0 10px 22px rgba(61, 44, 62, 0.12);
+  width: 135px;
+  transition: transform 0.35s ease;
+}
+
+.mini-polaroid img {
+  width: 100%;
+  height: 135px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+  background: #f3e6e8;
+}
+
+.mini-polaroid span {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12.5px;
+  color: #6d5965;
+  margin-top: 6px;
+}
+
+.rot-left {
+  transform: rotate(-5deg);
+}
+
+.rot-right {
+  transform: rotate(5deg);
+}
+
+.mini-polaroid:hover {
+  transform: scale(1.08) rotate(0deg);
+  z-index: 20;
+}
+
+.photo-flower {
+  position: absolute;
+  font-size: 20px;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.pf-1 {
+  top: -10px;
+  left: -10px;
+}
+
+.pf-2 {
+  bottom: 12px;
+  right: -10px;
+}
+
+/* =========================
+   TOMBOL
+========================= */
+
+.btn {
+  background: #b56576;
+  color: #fff;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(181, 101, 118, 0.3);
+  margin: 8px 4px 0;
+  position: relative;
+  z-index: 100;
+}
+
+.btn:hover {
+  background: #3d2c3e;
+  transform: scale(1.04);
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.9);
+  color: #8e5263;
+  border: 1px solid #e9c4cb;
+  box-shadow: none;
+}
+
+.btn-back:hover {
+  background: #f5e1e5;
+  color: #3d2c3e;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* =========================
+   VIDEO POLAROID BESAR
+========================= */
+
+.video-polaroid {
+  position: relative;
+  width: 100%;
+  max-width: 370px;
+  margin: 24px auto 20px;
+  padding: 12px 12px 46px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(61, 44, 62, 0.16);
+  transform: rotate(-1deg);
+  transition: transform 0.3s ease;
+}
+
+.video-polaroid:hover {
+  transform: rotate(0deg) scale(1.015);
+}
+
+.video-frame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #f3e6e8;
+  border: 1px solid rgba(181, 101, 118, 0.2);
+}
+
+.video-frame video {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  height: auto;
+  object-fit: contain;
+  background: #f3e6e8;
+}
+
+.video-caption {
+  position: absolute;
+  bottom: 12px;
+  left: 5px;
+  right: 5px;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #6d5965;
+}
+
+.video-deco {
+  position: absolute;
+  font-size: 23px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.video-deco.left {
+  top: -13px;
+  left: -12px;
+}
+
+.video-deco.right {
+  bottom: 27px;
+  right: -13px;
+}
+
+/* =========================
+   KASET BULAT + JUDUL LAGU
+========================= */
+
+#cassetteIndicator {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(181, 101, 118, 0.18);
+  z-index: 100002;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#cassetteIndicator:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(181, 101, 118, 0.25);
+}
+
+.vinyl-disc {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      #2b2226 0px,
+      #2b2226 2px,
+      #3b2f35 3px,
+      #2b2226 4px
+    );
+  border: 2px solid #b56576;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  animation: spinDisc 4.5s linear infinite;
+  animation-play-state: paused;
+}
+
+.vinyl-disc::before {
+  content: "♡";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffdde1, #b56576);
+  color: #fff;
+  font-size: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0 2px #2b2226;
+}
+
+.vinyl-disc::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fdfbfb;
+  z-index: 2;
+}
+
+#cassetteIndicator.playing .vinyl-disc {
+  animation-play-state: running;
+}
+
+@keyframes spinDisc {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.song-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 155px;
+}
+
+.song-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #3d2c3e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-sub {
+  font-size: 10px;
+  color: #8e5263;
+  margin-top: 1px;
+}
+
+/* =========================
+   BUNGA JATUH
+========================= */
+
+.falling-flower {
+  position: fixed;
+  top: -40px;
+  z-index: 5;
+  pointer-events: none;
+  user-select: none;
+  animation: flowerFall linear forwards;
+}
+
+@keyframes flowerFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(25px);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(360deg) translateX(-25px);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   ANIMASI SLIDE
+========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE HP
+========================= */
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 35px 14px;
+  }
+
+  .card {
+    padding: 35px 18px;
+  }
+
+  .mini-polaroid {
+    width: min(125px, 42vw);
+  }
+
+  .mini-polaroid img {
+    height: 125px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .btn {
+    padding: 13px 20px;
+  }
+
+  #cassetteIndicator {
+    top: 12px;
+    right: 12px;
+    padding: 5px 11px 5px 5px;
+  }
+
+  .vinyl-disc {
+    width: 38px;
+    height: 38px;
+  }
+
+  .song-meta {
+    max-width: 115px;
+  }
+
+  .song-title {
+    font-size: 11px;
+  }
+
+  .video-polaroid {
+    max-width: 100%;
+    padding: 9px 9px 42px;
+  }
+
+  .video-frame video {
+    max-height: 440px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     MUSIK LATAR
+========================= -->
+
+<audio id="bgMusic" src="Evelyn, Kebanggaan bunda mp (mp3cut.net).mp3" autoplay loop preload="auto"></audio>
+
+
+<!-- =========================
+     KASET BULAT + JUDUL LAGU
+========================= -->
+
+<div id="cassetteIndicator" title="Klik untuk putar / jeda lagu">
+  <div class="vinyl-disc"></div>
+  <div class="song-meta">
+    <span class="song-title" id="songTitle">Evelyn,Kebanggan Bunda</span>
+    <span class="song-sub" id="songSub">Bunda Tercinta</span>
+  </div>
+</div>
+
+
+<!-- =========================
+     SLIDE 1: PEMBUKA
+========================= -->
+
+<div id="welcome-screen">
+
+  <div class="welcome-title">
+    Ada pesan kecil untuk Evelyn 🌸
+  </div>
+
+  <div class="welcome-sub">
+    Ketuk tombol di bawah &amp; nikmati pesannya
+  </div>
+
+  <button type="button" class="btn" onclick="bukaKartu()">
+    Open 🤍
+  </button>
+
+</div>
+
+
+<!-- =========================
+     SLIDE 2: HAPPY BIRTHDAY
+========================= -->
+
+<div class="card slide" id="slide2">
+
+  <div class="floral-corner fc-top-left">🌸</div>
+  <div class="floral-corner fc-top-right">🌷</div>
+  <div class="floral-corner fc-bottom-left">🌺</div>
+  <div class="floral-corner fc-bottom-right">🌸</div>
+
+  <div class="tag">Special Day ✨</div>
+
+  <h1>
+    Happy Birthday, <br>
+    <span>Evelyn</span>
+  </h1>
+
+  <div class="message-section">
+
+    <p class="message-text">Happy Birthdayy CIPILL!!
+Selamat bertambah umur yaa, semoga panjang umur, sehat selalu, lancar luncuur buatt semua nyaaa, buat studi lanjutnya buat semuaa urusannya, aamiinn. Semua orang bangga sama evelyn, semua sayang sama evelyn dan Ayah pasti bangga liat evelyn yang sekarang, evelyn yang pinter,mandiri,mau berjuangg ngadepin semuanya,ninggalin rumah buat sekolah ayah bangga pasti punya anak kayak evelyn, kita disini ngedoain, ngesupport evelyn teruss kokk, eh jangan lupa doain ayah sama mama yaaa adik mu juga, mereka juga udah ngesupport evelyn sampe sekarangg, sehat sehat terus ya temann warjoogg kuuu, semoga kita bareng terus di TN sampe dapat studi lanjut masing masing, sampe PAPO bareng yaaa, makasih ya udah mau jadi temen ku selama ini, nanti kita abadikan momen momen di TN biar kalo kita suatu saat ketemu after TN bisa mengenang lagii momen momen nyaaa, sehatt selaluu yaa CIPILL ku!!!
+- AKbar Antony Mandala Hutama -
+    <div class="inline-photos">
+
+      <div class="mini-polaroid rot-left">
+        <span class="photo-flower pf-1">🌷</span>
+        <img src="eve,dap,kal.jpeg" alt="Foto Evelyn 1">
+        <span>sweet smile</span>
+      </div>
+
+      <div class="mini-polaroid rot-right">
+        <span class="photo-flower pf-2">🌸</span>
+        <img src="barcip.jpeg" alt="Foto Evelyn 2">
+        <span>always shining</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button class="btn btn-back" onclick="kembaliSlide(1)">← Kembali</button>
+    <button class="btn" onclick="tampilkanSlide(3)">Selanjutnya 🌷</button>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SLIDE 3: A WISH FOR YOU
+========================= -->
+
+<div class="card slide" id="slide3">
+
+  <div class="floral-corner fc-top-left">🌸</div>
+  <div class="floral-corner fc-top-right">🌷</div>
+  <div class="floral-corner fc-bottom-left">🌺</div>
+  <div class="floral-corner fc-bottom-right">🌸</div>
+
+  <div class="tag">A Wish For You ✨</div>
+
+  <h1>
+    Wishing You <br>
+    <span>Beautiful Things</span>
+  </h1>
+
+  <div class="message-section">
+
+    <p class="message-text">selamat bertambah usia lekku. cie punya ktp. makasih udh bisa berjuang sampai hari ini. makasih udh jdi my biefef since day one di malang. banyak hal udh kita jalanin bareng. and i’m truly grateful for all your support for me. may God bless you with grace, happiness, health, and bless in every step you take. semoga di umur yang bertambah ini, kedewasaan kamu semakin bertambah dan bisa banggain bunda kamu. don forget mi if yu udh jdi dokter sukses ya.
+lyn lu harus tau kalo lu udh keren bgt udh bisa dpt jumik 2 kali jg. semangat buat sukses. gw tunggu lu masuk UI  #salambeubeu #salam17tahungeng #salamrr #salamnusantarajaya
+- Davina Calista Putri -
+    <div class="inline-photos">
+
+      <div class="mini-polaroid rot-left">
+        <span class="photo-flower pf-1">🌷</span>
+        <img src="evedap.jpeg" alt="Foto Evelyn 3">
+        <span>lovely moments</span>
+      </div>
+
+      <div class="mini-polaroid rot-right">
+        <span class="photo-flower pf-2">🌸</span>
+        <img src="evedap2.jpeg" alt="Foto Evelyn 4">
+        <span>precious memories</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button class="btn btn-back" onclick="tampilkanSlide(2)">← Kembali</button>
+    <button class="btn" onclick="tampilkanSlide(4)">Selanjutnya 🌷</button>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SLIDE 4: ANOTHER LITTLE WISH
+========================= -->
+
+<div class="card slide" id="slide4">
+
+  <div class="floral-corner fc-top-left">🌸</div>
+  <div class="floral-corner fc-top-right">🌷</div>
+  <div class="floral-corner fc-bottom-left">🌺</div>
+  <div class="floral-corner fc-bottom-right">🌸</div>
+
+  <div class="tag">Another Little Wish ✨</div>
+
+  <h1>
+    Keep Shining, <br>
+    <span>Evelyn</span>
+  </h1>
+
+  <div class="message-section">
+
+    <p class="message-text">Heellloow rek ku, selamat tambah umur yaaaaaaaaa. Semoga di usia sekarang ini kamu bisa menjadi versi dirimu yang lebih baik dari sebelumnya, semoga apa yang ada di wishlist mu bisa satu satu tercapai yaaa, semoga kamu menjadi pribadi yang lebih kuat lebih tangguh dan bisa melewati badai yang mungkin datang di hidupmu, aku tau kamu orang yang selalu berusaha melewati batas kemampuan dirimu, kamu keren!!!!. Tapi kadang kamu juga butuh istirahat sejenak. Kalau butuh seseorang untuk berbagi cerita kami selalu ada di sampingmu loh! apapun bisa kamu ceriakan ke kami. TERAKHIR, KURANGIN KERAS KEPALANYA YA KALO DI BILANGIN JANGAN SUSAH......🤍
+      - Kalunayudya Asshalihannisa -
+    </p>
+
+    <div class="inline-photos">
+
+      <div class="mini-polaroid rot-left">
+        <span class="photo-flower pf-1">🌺</span>
+        <img src="cipkal 2.png" alt="Foto Evelyn 6">
+        <span>cherished day</span>
+      </div>
+
+      <div class="mini-polaroid rot-right">
+        <span class="photo-flower pf-2">🌷</span>
+        <img src="cipkal.png" alt="Foto Evelyn 7">
+        <span>best wishes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button class="btn btn-back" onclick="tampilkanSlide(3)">← Kembali</button>
+    <button class="btn" onclick="tampilkanSlide(5)">Selanjutnya 🌸</button>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SLIDE 5: PESAN AUDIO
+========================= -->
+
+<div class="card slide" id="slide5">
+
+  <div class="floral-corner fc-top-left">🌸</div>
+  <div class="floral-corner fc-top-right">🌷</div>
+  <div class="floral-corner fc-bottom-left">🌺</div>
+  <div class="floral-corner fc-bottom-right">🌸</div>
+
+  <div class="tag">Voice Message 🎙️</div>
+
+  <h1>
+    A Voice Note <br>
+    <span>For Evelyn</span>
+  </h1>
+
+  <p class="message-text">
+    Ada pesan suara khusus untukmu. Tekan tombol putar di bawah untuk mendengarkannya. 🤍
+  </p>
+
+  <!-- GANTI src="pesan-evelyn.mp3" SESUAI NAMA FILE AUDIO KAMU -->
+  <audio id="voiceNoteAudio" src="ucapan adekk.mp3" preload="metadata"></audio>
+
+  <div class="voice-note-box">
+    <div class="voice-header">
+      <button type="button" class="voice-play-btn" id="voicePlayBtn" aria-label="Putar pesan audio">
+        ▶
+      </button>
+      <div class="voice-meta">
+        <span class="voice-label">Pesan Suara Spesial</span>
+        <span class="voice-sub" id="voiceStatusText">Ketuk tombol untuk memutar</span>
+      </div>
+    </div>
+
+    <div class="voice-progress-wrap">
+      <input type="range" id="voiceSlider" class="voice-slider" min="0" max="100" value="0" step="0.1" aria-label="Geser posisi audio">
+      <span class="voice-time" id="voiceDuration">0:00</span>
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button class="btn btn-back" onclick="tampilkanSlide(4)">← Kembali</button>
+    <button class="btn" onclick="tampilkanSlide(6)">Lihat Video Terakhir 🎥</button>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SLIDE 6: VIDEO PENUTUP
+========================= -->
+
+<div class="card slide" id="slide6">
+
+  <div class="floral-corner fc-top-left">🌸</div>
+  <div class="floral-corner fc-top-right">🌷</div>
+  <div class="floral-corner fc-bottom-left">🌺</div>
+  <div class="floral-corner fc-bottom-right">🌸</div>
+
+  <div class="tag">One Last Thing ✨</div>
+
+  <h1>
+    Our Little <br>
+    <span>Memories</span>
+  </h1>
+
+  <div class="video-polaroid">
+
+    <span class="video-deco left">🌸</span>
+    <span class="video-deco right">🌷</span>
+
+    <div class="video-frame">
+
+      <video id="finalVideo"
+             controls
+             playsinline
+             preload="metadata">
+
+        <source src="ucapan mama.mp4" type="video/mp4">
+
+        Browser tidak mendukung pemutaran video.
+
+      </video>
+
+    </div>
+
+    <div class="video-caption">
+      A little memory to remember ♡
+    </div>
+
+  </div>
+
+  <p class="message-text">
+    Hope this little video makes you smile. 🤍
+  </p>
+
+  <div class="button-row">
+    <button class="btn btn-back" onclick="tampilkanSlide(5)">← Kembali</button>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   MUSIK LATAR & KASET BULAT
+========================= */
+
+const bgMusic = document.getElementById("bgMusic");
+const cassetteIndicator = document.getElementById("cassetteIndicator");
+const songSub = document.getElementById("songSub");
+
+bgMusic.volume = 0.5;
+
+function updateMusicUI(isPlaying) {
+  if (isPlaying) {
+    cassetteIndicator.classList.add("playing");
+    songSub.textContent = "Sedang diputar";
+  } else {
+    cassetteIndicator.classList.remove("playing");
+    songSub.textContent = "Dijeda";
+  }
+}
+
+async function startMusic() {
+  if (!bgMusic.paused) {
+    updateMusicUI(true);
+    return;
+  }
+
+  try {
+    await bgMusic.play();
+    updateMusicUI(true);
+  } catch (error) {
+    // Autoplay dapat diblokir browser sebelum interaksi
+  }
+}
+
+cassetteIndicator.addEventListener("click", async function() {
+  if (bgMusic.paused) {
+    try {
+      await bgMusic.play();
+      updateMusicUI(true);
+    } catch (error) {
+      const nextState = !cassetteIndicator.classList.contains("playing");
+      updateMusicUI(nextState);
+    }
+  } else {
+    bgMusic.pause();
+    updateMusicUI(false);
+  }
+});
+
+bgMusic.addEventListener("playing", function() {
+  updateMusicUI(true);
+});
+
+bgMusic.addEventListener("pause", function() {
+  updateMusicUI(false);
+});
+
+bgMusic.addEventListener("ended", function() {
+  updateMusicUI(false);
+});
+
+
+/* =========================
+   PEMUTAR PESAN AUDIO (SLIDE 5)
+========================= */
+
+const voiceAudio = document.getElementById("voiceNoteAudio");
+const voicePlayBtn = document.getElementById("voicePlayBtn");
+const voiceSlider = document.getElementById("voiceSlider");
+const voiceDuration = document.getElementById("voiceDuration");
+const voiceStatusText = document.getElementById("voiceStatusText");
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return mins + ":" + (secs < 10 ? "0" : "") + secs;
+}
+
+function stopVoiceNote() {
+  if (!voiceAudio) return;
+  voiceAudio.pause();
+  voicePlayBtn.textContent = "▶";
+  voiceStatusText.textContent = "Ketuk tombol untuk memutar";
+}
+
+if (voiceAudio) {
+  voiceAudio.addEventListener("loadedmetadata", function() {
+    voiceSlider.max = voiceAudio.duration || 100;
+    voiceDuration.textContent = formatTime(voiceAudio.duration);
+  });
+
+  voiceAudio.addEventListener("timeupdate", function() {
+    if (!voiceAudio.duration) return;
+    voiceSlider.max = voiceAudio.duration;
+    voiceSlider.value = voiceAudio.currentTime;
+    voiceDuration.textContent = formatTime(voiceAudio.duration - voiceAudio.currentTime);
+  });
+
+  voiceSlider.addEventListener("input", function() {
+    voiceAudio.currentTime = Number(voiceSlider.value);
+  });
+
+  voicePlayBtn.addEventListener("click", async function() {
+    if (voiceAudio.paused) {
+      try {
+        await voiceAudio.play();
+        voicePlayBtn.textContent = "❚❚";
+        voiceStatusText.textContent = "Sedang memutar pesan suara...";
+      } catch (error) {
+        voiceStatusText.textContent = "File audio belum ditemukan / gagal dimuat";
+      }
+    } else {
+      stopVoiceNote();
+      voiceStatusText.textContent = "Pesan suara dijeda";
+    }
+  });
+
+  voiceAudio.addEventListener("ended", function() {
+    voiceSlider.value = 0;
+    stopVoiceNote();
+    voiceStatusText.textContent = "Pesan suara selesai diputar";
+  });
+}
+
+
+/* =========================
+   SISTEM NAVIGASI UTAMA
+========================= */
+
+function tampilkanSlide(nomor) {
+
+  const welcome =
+    document.getElementById("welcome-screen");
+
+  welcome.style.display = "none";
+
+  const semuaSlide =
+    document.querySelectorAll(".slide");
+
+  semuaSlide.forEach(function(slide) {
+    slide.classList.remove("active");
+    slide.style.display = "none";
+  });
+
+  const tujuan =
+    document.getElementById("slide" + nomor);
+
+  if (!tujuan) {
+    console.error("Slide tidak ditemukan: slide" + nomor);
+    return;
+  }
+
+  tujuan.style.display = "block";
+
+  requestAnimationFrame(function() {
+    tujuan.classList.add("active");
+  });
+
+  if (nomor !== 5) {
+    stopVoiceNote();
+  }
+
+  const video =
+    document.getElementById("finalVideo");
+
+  if (nomor !== 6 && video) {
+    video.pause();
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =========================
+   BUKA KARTU
+========================= */
+
+function bukaKartu() {
+
+  startMusic();
+
+  const welcome =
+    document.getElementById("welcome-screen");
+
+  welcome.style.opacity = "0";
+
+  setTimeout(function() {
+    tampilkanSlide(2);
+  }, 500);
+
+}
+
+
+/* =========================
+   KEMBALI KE PEMBUKA
+========================= */
+
+function kembaliSlide(nomor) {
+
+  if (nomor === 1) {
+
+    stopVoiceNote();
+
+    document.querySelectorAll(".slide").forEach(function(slide) {
+      slide.classList.remove("active");
+      slide.style.display = "none";
+    });
+
+    const welcome =
+      document.getElementById("welcome-screen");
+
+    welcome.style.display = "flex";
+
+    requestAnimationFrame(function() {
+      welcome.style.opacity = "1";
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  } else {
+
+    tampilkanSlide(nomor);
+
+  }
+
+}
+
+
+/* =========================
+   BUNGA BERJATUHAN
+========================= */
+
+let flowerTimer = null;
+
+function buatBungaJatuh() {
+
+  if (flowerTimer !== null) {
+    return;
+  }
+
+  const jenisBunga = [
+    "🌸",
+    "🌷",
+    "🌺",
+    "🌼",
+    "🩷"
+  ];
+
+  flowerTimer = setInterval(function() {
+
+    const bunga =
+      document.createElement("span");
+
+    bunga.className = "falling-flower";
+
+    bunga.textContent =
+      jenisBunga[
+        Math.floor(Math.random() * jenisBunga.length)
+      ];
+
+    const durasi = 8 + Math.random() * 7;
+
+    bunga.style.left =
+      Math.random() * 100 + "vw";
+
+    bunga.style.fontSize =
+      (14 + Math.random() * 14) + "px";
+
+    bunga.style.animationDuration =
+      durasi + "s";
+
+    document.body.appendChild(bunga);
+
+    setTimeout(function() {
+      bunga.remove();
+    }, durasi * 1000);
+
+  }, 500);
+
+}
+
+
+/* =========================
+   SAAT WEBSITE DIBUKA
+========================= */
+
+window.addEventListener("load", function() {
+
+  document.querySelectorAll(".slide").forEach(function(slide) {
+    slide.classList.remove("active");
+    slide.style.display = "none";
+  });
+
+  const welcome =
+    document.getElementById("welcome-screen");
+
+  welcome.style.display = "flex";
+  welcome.style.opacity = "1";
+
+  buatBungaJatuh();
+
+  startMusic();
+
+});
+
+</script>
+
+</body>
+</html>
